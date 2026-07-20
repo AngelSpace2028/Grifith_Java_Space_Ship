@@ -1,34 +1,37 @@
-package griffin;
+package ie.Griffith;
 
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Bullet {
+public class Stars {
     private PVector pos;
-    private PVector vel;
-    private int life;
+    private float size;
 
-    public Bullet(PVector start, PVector velocity) {
-        pos = start.copy();
-        vel = velocity.copy();
-        life = 80;
+    public Stars() {
+        pos = new PVector(
+            PApplet.random(-1200, 1200),
+            PApplet.random(-900, 900),
+            PApplet.random(-800, 800)
+        );
+        size = PApplet.random(1, 4);
     }
 
-    public void update() {
-        pos.add(vel);
-        life--;
-    }
-
-    public boolean isDead() {
-        return life <= 0 || pos.mag() > 1500;
+    public void update(PVector shipPos) {
+        float dz = pos.z - shipPos.z;
+        if (dz > 500) {
+            pos.x = PApplet.random(-1200, 1200);
+            pos.y = PApplet.random(-900, 900);
+            pos.z = shipPos.z - 500 - PApplet.random(300);
+            size = PApplet.random(1, 4);
+        }
     }
 
     public void render(PApplet p) {
         p.pushMatrix();
         p.translate(pos.x, pos.y, pos.z);
-        p.fill(255, 200, 0);
+        p.fill(255);
         p.noStroke();
-        p.box(6);
+        p.box(size * 0.5f);
         p.popMatrix();
     }
 }
