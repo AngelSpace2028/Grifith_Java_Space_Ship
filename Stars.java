@@ -1,4 +1,4 @@
-package griffin;
+package ie.Griffith;
 
 import processing.core.PApplet;
 import processing.core.PVector;
