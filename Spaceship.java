@@ -1,4 +1,4 @@
-package griffin;
+package ie.Griffith;
 
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -51,7 +51,6 @@ public class Spaceship {
 
     public void thrustForward(float speed) {
         PVector dir = getOrientation();
-        // Apply Nitro boost (triple speed)
         float multiplier = nitroActive ? 3.0f : 1.0f;
         pos.add(PVector.mult(dir, speed * multiplier));
     }
@@ -98,10 +97,10 @@ public class Spaceship {
         if (nitroActive) {
             p.fill(255, 255, 200, 250);
             p.translate(0, 0, -25);
-            p.box(28, 12, 10);  // bigger & brighter
+            p.box(28, 12, 10);
             p.fill(255, 200, 0, 150);
             p.translate(0, 0, -10);
-            p.box(36, 16, 8);   // outer glow
+            p.box(36, 16, 8);
         } else {
             p.fill(255, 100, 0, 200);
             p.translate(0, 0, -25);
